@@ -18,6 +18,9 @@ module NavigationHelpers
     when /^the new article page$/
       '/admin/content/new'
 
+    #when /^the edit article page for "(.+)"$/ then admin_content_edit_path(Article.where(title: $1)[0])
+  when /^the edit article page for "(.+)"$/ then "/admin/content/edit/#{Article.where(title: $1)[0].id}"
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

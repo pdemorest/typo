@@ -55,7 +55,7 @@ And /^I am logged into the admin panel$/ do
   end
 end
 
-And /^I (?:|also) create the article "(.+)" with description "(.+)"$/ do |title, body|
+And /^I create the article "(.+)" with description "(.+)"$/ do |title, body|
   steps %Q{
     And I am on the new article page
     And I fill in "article_title" with "#{title}"
@@ -64,9 +64,15 @@ And /^I (?:|also) create the article "(.+)" with description "(.+)"$/ do |title,
   }
 end
 
-And /^I (?:|also) leave a comment, "(.+)", for "(.+)"$/ do |comment, title|
+And /^I leave a comment, "(.+)", for "(.+)"$/ do |comment, title|
   steps %Q{
-
+    Given I am on the home page
+    And I follow "#{title}"
+    When I fill in "comment_author" with "admin"
+    And I fill in "comment_email" with "joe@snow.com"
+    And I fill in "comment_url" with "joerocks.com"
+    And I fill in "comment_body" with "#{comment}"
+    And I press "comment"
   }
 end
 

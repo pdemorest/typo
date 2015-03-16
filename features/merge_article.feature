@@ -7,9 +7,9 @@ Feature: Merge Articles
     Given the blog is set up
     And I am logged into the admin panel
     When I create the article "Bunnies" with description "Bunnies have ears"
-    And I also create the article "Rabbits" with description "Rabbits have fluffy tails"
-    And leave a comment, "Bunnies are awesome", for "Bunnies"
-    And also leave a comment, "Rabbits are cool", for "Rabbits"
+    And I create the article "Rabbits" with description "Rabbits have fluffy tails"
+    And I leave a comment, "Bunnies are awesome", for "Bunnies"
+    And I leave a comment, "Rabbits are cool", for "Rabbits"
     Given I am on the edit article page for "Bunnies"
     And I fill in "Article ID" with the ID for "Rabbits"
     And I press "Merge"
