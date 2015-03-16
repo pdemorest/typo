@@ -31,6 +31,14 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+Given /the following articles exist/ do |articles_table|
+  articles_table.hashes.each do |articles|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that movie to the database here.
+    Article.create(article)
+  end
+end
+
 Given /^the blog is set up$/ do
   Blog.default.update_attributes!({:blog_name => 'Teh Blag',
                                    :base_url => 'http://localhost:3000'});
@@ -43,9 +51,9 @@ Given /^the blog is set up$/ do
                 :state => 'active'})
 end
 
-And /^I am logged into the admin panel$/ do
+And /^I am logged into the (.+) panel$/ do |type|
   visit '/accounts/login'
-  fill_in 'user_login', :with => 'admin'
+  fill_in 'user_login', :with => "#{type}"
   fill_in 'user_password', :with => 'aaaaaaaa'
   click_button 'Login'
   if page.respond_to? :should
@@ -75,6 +83,12 @@ And /^I leave a comment, "(.+)", for "(.+)"$/ do |comment, title|
     And I press "comment"
   }
 end
+
+And /^I fill in "(.+)" with the ID for "(.+)" do |field, title|
+  id = Article.where(title: title)[0].id
+  steps %Q{
+    When I fill in "#{field}" with "#{id}"
+  }
 
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|

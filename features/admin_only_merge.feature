@@ -17,6 +17,7 @@ Feature: Merge as Admin-only
     And I should see "Merge"
 
   Scenario: Non-Admin does not see the merge option
+    Given I am logged into the publisher panel
     When I go to the edit article page for "A"
     Then I should not see "Article ID"
     And I should not see "Merge"
