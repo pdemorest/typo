@@ -55,6 +55,21 @@ And /^I am logged into the admin panel$/ do
   end
 end
 
+And /^I (?:|also) create the article "(.+)" with description "(.+)"$/ do |title, body|
+  steps %Q{
+    And I am on the new article page
+    And I fill in "article_title" with "#{title}"
+    And I fill in "article__body_and_extended_editor" with "#{body}"
+    And I press "Publish"
+  }
+end
+
+And /^I (?:|also) leave a comment, "(.+)", for "(.+)"$/ do |comment, title|
+  steps %Q{
+
+  }
+end
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }
