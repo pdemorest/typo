@@ -6,9 +6,9 @@ Feature: Merge as Admin-only
   Background:
     Given the blog is set up
     And the following articles exist:
-    | title | author | content | 
-    | A     | Alice  | Hello   |
-    | B     | Bob    | World   |
+    | title | author | body  | 
+    | A     | Alice  | Hello |
+    | B     | Bob    | World |
 
   Scenario: Admin sees the merge option
     Given I am logged into the admin panel
